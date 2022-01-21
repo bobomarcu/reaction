@@ -7,12 +7,15 @@
     <title>Reaction Time</title>
     <link rel="stylesheet" type="text/css" href="home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="home.js"></script>
 </head>
 <body>
+    <div class=" container">
     <button id="srt" class="start" onclick="startsec()" >Start sequnce!</button>
     <h3>Press "check" or space bar  when lights are out</h3>
     <h3>Press "Start sequnce" or Enter Key  to start</h3>
     <h3>Press "Try Again!" or r key for trying again</h3>
+    </div>
     <div class="full" id="ful">
         
         <div id="bec1" class="indiv"></div>
@@ -22,101 +25,11 @@
         <div id="bec5" class="indiv"></div>
     </div>
     <button class="verifica" id="test" onclick="add()">Check!</button>
+   
     <div class="rezult" style="display: none;">
         <h4 id="res"></h4>
         <button id="reset" class="verifica" onClick="window.location.reload();">Try Again?</button>
     </div>
-    <script>
-       var createdTime = 0;
-       var clickedTime=0;
-       var reactionTime=0;
-
-        function startsec(){
-                    setTimeout(function () {
-                    $("#bec1").css("background", "red");
-                    beep();
-                    }, 1000);
-                    setTimeout(function () {
-                    $("#bec2").css("background", "red");
-                    beep();
-                    }, 2000);
-                    setTimeout(function () {
-                    $("#bec3").css("background", "red");
-                    beep();
-                    }, 3000);
-                    setTimeout(function () {
-                    $("#bec4").css("background", "red");
-                    beep();
-                    }, 4000 );
-                    setTimeout(function () {
-                    $("#bec5").css("background", "red");
-                    beep();
-                    }, 5000 );
-                
-                        var rand = close_rand(5009,10000);
-                                console.log(rand);
-                                
-                                function close_rand(min,max){
-                                    return Math.floor(Math.random() * (max - min + 1) ) + min;
-                                }
-                    
-                    setTimeout(function () {
-                    $(".indiv").css("background", "black");
-                     createdTime = Date.now();
-                        console.log(createdTime);
-                }, rand);
-                
-                function beep() {
-                        var snd = new Audio("soundf1.mp3");  
-                        snd.play();
-                    }
-                
-            
-    }function add(){
-                
-            
-                clickedTime=Date.now();
-                console.log(clickedTime);
-                var a =clickedTime-createdTime;
-                reactionTime= (a/1000)%1;
-                console.log(reactionTime);
-                document.getElementById("res").innerHTML="Your Reaction Time is: " + reactionTime.toFixed(3) + "seconds";
-                
-                $(document).ready(function(){
-               
-               
-               $(".rezult").fadeIn();
-               
-        
-         });
-                
-    }
-    $(window).keypress(function (e) {
-        if (e.key === ' ' || e.key === 'Spacebar') {
-          // ' ' is standard, 'Spacebar' was used by IE9 and Firefox < 37
-         e.preventDefault()
-            console.log('Space pressed');
-            $("#test").click();
-    }
-    });
-    $(window).keypress(function (e) {
-        if (e.key === "r") {
-          // ' ' is standard, 'Spacebar' was used by IE9 and Firefox < 37
-         e.preventDefault()
-            console.log('r pressed');
-            $("#reset").click();
-    }
-    });
-    $(window).keypress(function (e) {
-    if (e.keyCode === 13) {
-          // ' ' is standard, 'Spacebar' was used by IE9 and Firefox < 37
-         e.preventDefault()
-            console.log('r pressed');
-            $("#srt").click();
-    }
-    });
-
-    
-    </script>
+  
 </body>
 </html>
